@@ -14,7 +14,7 @@ def battleship() :
         
     row = input("Please guess a row :(0/1/2/3/4) ")
     if row in ('0', '1', '2', '3', '4'):
-        print("Please continue")
+        print("Thank you, now please continue to the next section")
     else:
         if row != ('0', '1', '2', '3', '4'):
             print("Good try sucker now enter either 0/1/2/3/4")
@@ -22,11 +22,40 @@ def battleship() :
     
     colm = input("Please guess a column :(0/1/2/3/4) ")
     if colm in ('0', '1', '2', '3', '4'):
-        print("Please continue")
+        print("Thank you")
     else:
         if colm != ('0', '1', '2', '3', '4'):
             print("Good try sucker now enter either 0/1/2/3/4")
             colm = input("Please guess a column :(0/1/2/3/4) ")
+    print("You guessed row", row, "and column", colm)
+    
+            
+            
+#use for loop for row and colm guessing- needs to cycle through three times
+
+#if guess = correct row and colm
+    #print("Congraulations, you have won BattleShip")
+#elif guess != correct row and colm and not all 3 guesses have been used
+    #print("You missed my BattleShip, please guess a row and column again")
+    #row = input("Please guess a row :(0/1/2/3/4) ")
+    #if row in ('0', '1', '2', '3', '4'):
+        #print("Thank you, now please continue to the next section")
+    #else:
+        #if row != ('0', '1', '2', '3', '4'):
+            #print("Good try sucker now enter either 0/1/2/3/4")
+            #row = input("Please guess a row :(0/1/2/3/4) ")
+    
+    #colm = input("Please guess a column :(0/1/2/3/4) ")
+    #if colm in ('0', '1', '2', '3', '4'):
+        #print("Thank you")
+    #else:
+        #if colm != ('0', '1', '2', '3', '4'):
+            #print("Good try sucker now enter either 0/1/2/3/4")
+            #colm = input("Please guess a column :(0/1/2/3/4) ")
+#else guess != correct row and colm and all 3 guesses have been used
+    #print("You missed my BattleShip, and you lose hahahahahaha")
+            
+        
 
 
 battleship()
