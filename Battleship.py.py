@@ -11,6 +11,24 @@ def battleship() :
     else: 
         print("Hell to daw naw, to daw naw naw naw- no please enter either y or n")
         decision = input("Are you ready to play Battle ship? :(y/n) ")
+
+
+
+    arr = [["O", "O", "O", "O", "O"],
+           ["O", "O", "O", "O", "O"], 
+           ["O", "O", "O", "O", "O"], 
+           ["O", "O", "O", "O", "O"],
+           ["O", "O", "O", "O", "O"]]
+
+    def printboard():
+        for r in range(len(arr)):
+            print(arr[r])
+            print()
+
+    printboard()
+
+
+    
         
     row = input("Please guess a row :(0/1/2/3/4) ")
     if row in ('0', '1', '2', '3', '4'):
