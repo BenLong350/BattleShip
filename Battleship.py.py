@@ -77,6 +77,16 @@ def battleship() :
         
         break
 
+    import random
+    row2 = random.randrange(0,5)
+    colm2= random.randrange(0,5)
+
+
+    ship_location = (row2, colm2)
+#print(ship_location)
+
+battleship()
+
         
     
             
@@ -104,10 +114,5 @@ def battleship() :
             #colm = input("Please guess a column :(0/1/2/3/4) ")
 #else guess != correct row and colm and all 3 guesses have been used
     #print("You missed my BattleShip, and you lose hahahahahaha")
-            
-        
-
-
-battleship()
-
+    
 
