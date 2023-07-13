@@ -31,24 +31,24 @@ def battleship() :
     def guess():
         printboard()
         while True:
-            row = input("Please guess a row :(0/1/2/3/4) ")
-            if row in ('0', '1', '2', '3', '4'):
+            row = int(input("Please guess a row :(0/1/2/3/4): "))
+            if row in (0, 1, 2, 3, 4):
                 print("Thank you, now please continue to the next section")
                 break
             else:
-                if row != ('0', '1', '2', '3', '4'):
+                if row != (0, 1, 2, 3, 4):
                     print("Good try sucker now enter either 0/1/2/3/4")
-                    row = input("Please guess a row :(0/1/2/3/4) ")
+                    row = input("Please guess a row :(0/1/2/3/4): ")
     
         while True:
-            colm = input("Please guess a column :(0/1/2/3/4) ")
-            if colm in ('0', '1', '2', '3', '4'):
+            colm = int(input("Please guess a column :(0/1/2/3/4): "))
+            if colm in (0, 1, 2, 3, 4):
                 print("Thank you")
                 break
             else:
-                if colm != ('0', '1', '2', '3', '4'):
+                if colm != (0, 1, 2, 3, 4):
                     print("Good try sucker now enter either 0/1/2/3/4")
-                    colm = input("Please guess a column :(0/1/2/3/4) ")
+                    colm = input("Please guess a column :(0/1/2/3/4): ")
                 print("You guessed row", row, "and column", colm)
     
         list= [row, colm]
