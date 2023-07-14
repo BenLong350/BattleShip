@@ -43,10 +43,10 @@ def battleship() :
     row = 0
     colm = 0
         
-    while round < 6:
-        print ("Round", round)
-        printboard()
-        while True:
+    while True:
+        while round < 6 :
+            print ("Round", round)
+            printboard()
             while True:
                 try:
                     row = int(input("Please guess a row :(0/1/2/3/4): "))
@@ -90,21 +90,26 @@ def battleship() :
                 arr[row][colm] = "X"
                 printboard()
                 print("Congraulations, you have beaten my very hard game of Battle Ship")
-            try_again = input("Would you like to play again? :(y/n): ")
-            if try_again == "y":
-                battleship()
-            elif try_again == "n":
-                print("Ok loser, now GTFO of my code")
-                exit()
-            else:
-                print("Please type y or n you dumdum poopoo head")
                 try_again = input("Would you like to play again? :(y/n): ")
+                if try_again == "y":
+                    battleship()
+                elif try_again == "n":
+                    print("Ok loser, now GTFO of my code")
+                    exit()
+                else:
+                    print("Please type y or n you dumdum poopoo head")
+                    try_again = input("Would you like to play again? :(y/n): ")
 
-            if list != ship_location:
+            else:
                 print("You missed! Try again!")
                 arr[row][colm] = "M"
             round +=1
-            
+        if round > 6 and list == ship_location:
+            print("Dang you lucky son of a gun you got it. COngrats you win")
+            continue
+        else:
+            print("You lose sucker MUAH HA HA HA HA HA HA HA HA")
+            break
 
    
 #print(ship_location)
