@@ -1,16 +1,31 @@
 #BattleShip
 
 def battleship() :
+    
+    
+    round = 1
+    import random
+    row2 = random.randrange(0,5)
+    colm2= random.randrange(0,5)
 
-    decision = input("Are you ready to play Battle ship? :(y/n) ")
-    if decision == "y":
-        print("Now we shall begin with this glorious exercise testing ones strengh and wit")
-    elif decision == "n":
-        print("OK, goodbye you bum piece of poopoo crap now GTFO")
-        exit()
-    else: 
-        print("Hell to daw naw, to daw naw naw naw- no please enter either y or n")
+
+    ship_location = (row2, colm2)
+    print(ship_location)
+
+    def ask():
         decision = input("Are you ready to play Battle ship? :(y/n) ")
+        if decision == "y":
+            print("Now we shall begin with this glorious exercise testing ones strengh and wit")
+        elif decision == "n":
+            print("OK, goodbye you bum piece of poopoo crap now GTFO")
+            exit()
+        else: 
+            print("Hell to daw naw, to daw naw naw naw- no please enter either y or n")
+            decision = input("Are you ready to play Battle ship? :(y/n) ")
+        
+        
+        
+    ask()
 
 
 
@@ -25,64 +40,73 @@ def battleship() :
             print(arr[r])
             print()
 
-    row = None
-    colm = None
+    row = 0
+    colm = 0
         
-    def guess():
+    while round < 6:
+        print ("Round", round)
         printboard()
         while True:
-            row = int(input("Please guess a row :(0/1/2/3/4): "))
-            if row in (0, 1, 2, 3, 4):
-                print("Thank you, now please continue to the next section")
+            while True:
+                try:
+                    row = int(input("Please guess a row :(0/1/2/3/4): "))
+                except ValueError:
+                    print("Please type only 0, 1, 2, 3, or 4")
+                    continue
+                if row in (0, 1, 2, 3, 4):
+                    print("Thank you, now please continue to the next section")
+                else:
+                    if row != (0, 1, 2, 3, 4):
+                        print("Good try sucker now enter either 0/1/2/3/4")
+                        row = int(input("Please guess a row :(0/1/2/3/4): "))
                 break
-            else:
-                if row != (0, 1, 2, 3, 4):
-                    print("Good try sucker now enter either 0/1/2/3/4")
-                    row = input("Please guess a row :(0/1/2/3/4): ")
     
-        while True:
-            colm = int(input("Please guess a column :(0/1/2/3/4): "))
-            if colm in (0, 1, 2, 3, 4):
-                print("Thank you")
+            while True:
+                try:
+                    colm = int(input("Please guess a column :(0/1/2/3/4): "))
+                except ValueError:
+                    print("Please type only 0, 1, 2, 3, or 4")
+                    continue
+                if colm in (0, 1, 2, 3, 4):
+                    print("Thank you")
+                else:
+                    if colm != (0, 1, 2, 3, 4):
+                        print("Good try sucker now enter either 0/1/2/3/4")
+                        colm = int(input("Please guess a column :(0/1/2/3/4): "))
                 break
+        
+            list= (row, colm)
+            print(list)
+            print("These are the guesses that have been made: " ,list)
+        
+            if arr[row][colm] == "O":
+                print("**********")
             else:
-                if colm != (0, 1, 2, 3, 4):
-                    print("Good try sucker now enter either 0/1/2/3/4")
-                    colm = input("Please guess a column :(0/1/2/3/4): ")
-                print("You guessed row", row, "and column", colm)
-    
-        list= [row, colm]
-        print("These are the guesses that have been made: " ,list)
-
-    guess()
-
-
-
-
-    while True:
-        if arr[row][colm] == "O":
-            print("**********")
-        else:
-            print("You already chose that coordinate!")
+                print("You already chose that coordinate!")
         
-        break
 
-    while True:
-        if arr[row][colm] == ship_location:
-            print("You hit the battleship!")
-            arr[row][colm] = "X"
-        else:
-            print("You missed! Try again!")
-            guess()
-        
-        break
+            if list == ship_location:
+                print("You hit the battleship!")
+                arr[row][colm] = "X"
+                printboard()
+                print("Congraulations, you have beaten my very hard game of Battle Ship")
+            try_again = input("Would you like to play again? :(y/n): ")
+            if try_again == "y":
+                battleship()
+            elif try_again == "n":
+                print("Ok loser, now GTFO of my code")
+                exit()
+            else:
+                print("Please type y or n you dumdum poopoo head")
+                try_again = input("Would you like to play again? :(y/n): ")
 
-    import random
-    row2 = random.randrange(0,5)
-    colm2= random.randrange(0,5)
+            if list != ship_location:
+                print("You missed! Try again!")
+                arr[row][colm] = "M"
+            round +=1
+            
 
-
-    ship_location = (row2, colm2)
+   
 #print(ship_location)
 
 battleship()
