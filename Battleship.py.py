@@ -10,7 +10,7 @@ def battleship() :
 
 
     ship_location = (row2, colm2)
-    print(ship_location)
+    #print(ship_location)
 
     def ask():
         decision = input("Are you ready to play Battle ship? :(y/n) ")
@@ -111,8 +111,6 @@ def battleship() :
             print("You lose sucker MUAH HA HA HA HA HA HA HA HA")
             break
 
-   
-#print(ship_location)
 
 battleship()
 
