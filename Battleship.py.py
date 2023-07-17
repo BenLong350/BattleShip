@@ -76,8 +76,11 @@ def battleship() :
                 break
         
             list= (row, colm)
-            print(list)
-            print("These are the guesses that have been made: " ,list)
+            guess_list = []
+            guess_list.append(list)
+            
+            
+            print(guess_list)
         
             if arr[row][colm] == "O":
                 print("**********")
