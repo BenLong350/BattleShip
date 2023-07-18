@@ -24,13 +24,11 @@ def battleship() :
             row2 = random.randrange(0,board_size)
             colm2 = random.randrange(0,board_size)
             ship_location1 = (row2, colm2)
-            print(ship_location1)
             return ship_location1
         elif decision2 == "n":
             row3 = int(input("What row would you like the ship to be placed?: "))
             colm3 = int(input("What column would you like the ship to be placed?: "))
             ship_location2 = (row3, colm3)
-            print(ship_location2)
             return ship_location2
         else:
             print("bro wth are you doing just pick a damn row and column :")
@@ -62,7 +60,6 @@ def battleship() :
     row = 0
     colm = 0
     guesslist = []
-    print(range(board_size))
         
     while True:
         while round < 6 :
