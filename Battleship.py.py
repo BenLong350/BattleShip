@@ -4,7 +4,7 @@ def battleship() :
     
     import colorama
     from colorama import Fore
-    
+    #all these varibles must be defined 
     round = 1
     computer_round = 1
     import random
@@ -70,7 +70,6 @@ def battleship() :
         return computer_ship_location
     
     computer_ship_location = computer_ask()
-    print(computer_ship_location)
 
     ArrayUser = []
     
