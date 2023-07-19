@@ -89,7 +89,7 @@ def battleship() :
         for row in ArrayComputer:
             print(" ".join(row))
             
-    ArrayUser[row2][colm2] = (Fore.WHITE + "S")
+    ArrayComputer[row2][colm2] = (Fore.WHITE + "S")
 
     row = 0
     colm = 0
@@ -109,8 +109,9 @@ def battleship() :
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
-                print (Fore.WHITE + "Round", round)
-                printboard(ArrayComputer)
+                print(Fore.WHITE + "Round", round)
+                print(Fore.WHITE + "This is the enemy's board. Now try to guess where their ship is.")
+                printboard(ArrayUser)
                 print(Fore.WHITE + "**************")
                 
                 while True:
@@ -144,14 +145,14 @@ def battleship() :
                 user_guesslist.append(list)
                 print(Fore.WHITE + "These are the guesses that have been made so far:", user_guesslist)
         
-                if ArrayComputer[row][colm] == "O":
+                if ArrayUser[row][colm] == "O":
                     print(Fore.WHITE + "**********")
                 else:
                     print(Fore.WHITE + "You already chose that coordinate!")
         
                 if list == computer_ship_location:
                     print(Fore.WHITE + "Dang you hit the computers Battle Ship")
-                    ArrayComputer[row][colm] = (Fore.GREEN + "X")
+                    ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     printboard(ArrayComputer)
                     print(Fore.WHITE + "Congraulations, you have beaten my very hard game of Battle Ship")
                     try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
@@ -183,8 +184,9 @@ def battleship() :
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
-                print (Fore.WHITE + "Computer Round", computer_round)
-                printboard(ArrayUser)
+                print(Fore.WHITE + "Computer Round", computer_round)
+                print(Fore.WHITE + "This is your board, the computer will now try to guess where your ship is, which you can now see by the S in the grid.")
+                printboard(ArrayComputer)
                 computer_row = random.randrange(0,board_size)
                 computer_colm = random.randrange(0,board_size)
         
@@ -193,7 +195,7 @@ def battleship() :
                 print(Fore.WHITE + "These are the guesses the computer made:", computer_guesslist)
                 computer_round += 1
         
-                if ArrayUser[computer_row][computer_colm] == "O":
+                if ArrayComputer[computer_row][computer_colm] == "O":
                     print(Fore.WHITE + "**********")
                 else:
                     computer_row = random.randrange(0,board_size)
@@ -201,8 +203,8 @@ def battleship() :
         
                 if computer_list == user_ship_location:
                     print(Fore.WHITE + "The computer has hit your battleship!")
-                    ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
-                    printboard(ArrayUser)
+                    ArrayComputer[row][colm] = (Fore.GREEN + "X")
+                    printboard(ArrayComputer)
                     print(Fore.WHITE + "You suck, your bum self lost to the stupid coomputer")
                     try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                     if try_again == "y":
