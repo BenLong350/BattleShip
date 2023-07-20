@@ -51,7 +51,7 @@ def battleship() :
         
         decision2 = input("Do you want your Submarine's location to be random? :(y/n) ")
         if decision2 == "y":
-            row2 = random.randrange(0,board_size)
+            row2 = random.randrange(1,board_size -1)
             colm2 = random.randrange(0,board_size)
             user_sub_location = (row2, colm2)
             user_sub_location2 = (row2, colm2 + 1)
@@ -67,7 +67,7 @@ def battleship() :
         decision3 = input("Do you want your Destoryer's location to be random? :(y/n) ")
         if decision2 == "y":
             row3 = random.randrange(0,board_size)
-            colm3 = random.randrange(0,board_size)
+            colm3 = random.randrange(1,board_size - 1)
             user_destoryer_location = (row3, colm3)
             user_destoryer_location2 = (row3 + 1, colm3)
         elif decision3 == "n":
@@ -82,28 +82,43 @@ def battleship() :
         return row2, colm2, user_sub_location, user_sub_location2, row3, colm3, user_destoryer_location, user_destoryer_location2
         
     row2, colm2, user_sub_location, user_sub_location2, row3, colm3, user_destoryer_location, user_destoryer_location2 = ask()
+    
+    def ship_check1():
+        if user_sub_location == user_destoryer_location:
+            print("Your ship placement is invalid, please run the program again")
+            exit()
+            
+    ship_check1()
+    
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
     print("You have choosen," ,user_sub_location, user_sub_location2, "as your Submarine's location and" ,user_destoryer_location, user_destoryer_location2, "as your Destoryer's location")
+    
     def computer_ask():
-        row4 = random.randrange(0,board_size)
+        row4 = random.randrange(1,board_size - 1)
         colm4 = random.randrange(0,board_size)
         computer_sub_location = (row4, colm4)
         computer_sub_location2 = (row4, colm4 +1)
-        return computer_sub_location, computer_sub_location2
+        return computer_sub_location, computer_sub_location2, row4, colm4
     
-    computer_sub_location, computer_sub_location2 = computer_ask()
+    computer_sub_location, computer_sub_location2, row4, colm4 = computer_ask()
     
     def computer_ask2():
-        row4 = random.randrange(0,board_size)
-        colm4 = random.randrange(0,board_size)
-        computer_destoryer_location = (row4, colm4)
-        computer_destoryer_location2 = (row4 +1, colm4)
-        return computer_destoryer_location, computer_destoryer_location2
+        row5 = random.randrange(0,board_size)
+        colm5 = random.randrange(1,board_size - 1)
+        computer_destoryer_location = (row5, colm5)
+        computer_destoryer_location2 = (row5 +1, colm5)
+        return computer_destoryer_location, computer_destoryer_location2, row5, colm5
     
     
-    computer_destoryer_location, computer_destoryer_location2 = computer_ask2()
+    computer_destoryer_location, computer_destoryer_location2, row5, colm5 = computer_ask2()
+    
+    def ship_check2():
+        if computer_sub_location == computer_destoryer_location:
+            print("The computers ship locations were invalid, please re-start the function")
+        
+    ship_check2()
     
     print(computer_sub_location)
     print(computer_sub_location2)
@@ -190,18 +205,25 @@ def battleship() :
                 if ArrayUser[row][colm] == "O":
                     print(Fore.WHITE + "**********")
                 else:
-                    print(Fore.WHITE + "You already chose that coordinate!")
+                    print()
         
                 if list == computer_sub_location or list == computer_sub_location2 or list == computer_destoryer_location or list == computer_destoryer_location2:
-                    print(Fore.WHITE + "Dang you hit one of the computers ships")
-                    ArrayUser[row][colm] = (Fore.GREEN + "X")
-                    if user_guesslist == computer_sub_location and user_guesslist == computer_sub_location2:
-                        print(Fore.WHITE + "You have sunk the computers Submarine")
-                        ArrayUser[row][colm] = (Fore.BLACK + "X")
-                    if user_guesslist == computer_destoryer_location and user_guesslist == computer_destoryer_location2:
-                        print(Fore.WHITE + "You have sunk the computers Destoryer")
-                        ArrayUser[row][colm] = (Fore.BLACK + "X")
-                    elif user_guesslist == computer_destoryer_location and user_guesslist == computer_destoryer_location2 and user_guesslist == computer_sub_location and user_guesslist == computer_sub_location2:
+                    print(Fore.WHITE + "**********")
+                    if list == computer_sub_location or list == computer_sub_location2:
+                        print(Fore.WHITE + "You have hit the computers Submarine")
+                        ArrayUser[row][colm] = (Fore.GREEN + "X")
+                    if list == computer_destoryer_location or list == computer_destoryer_location2:
+                        print(Fore.WHITE + "You have hit the computers Destoryer")
+                        ArrayUser[row][colm] = (Fore.GREEN + "X")
+                    if ArrayUser[row4][colm4] == (Fore.GREEN + "X") and ArrayUser[row4][colm4 + 1] == (Fore.GREEN + "X"):
+                        print("You have sunk the compputers submarine!")
+                        ArrayUser[row4][colm4] = (Fore.BLACK + "X")
+                        ArrayUser[row4][colm4 + 1] = (Fore.BLACK + "X")
+                    if ArrayUser[row5][colm5] == (Fore.GREEN + "X") and ArrayUser[row5+ 1][colm5] == (Fore.GREEN + "X"):
+                        print("You have sunk the computers destroyer!")
+                        ArrayUser[row5][colm5] = (Fore.BLACK + "X")
+                        ArrayUser[row5 + 1][colm5] = (Fore.BLACK + "X")
+                    if ArrayUser[row5][colm5] == (Fore.BLACK + "X") and ArrayUser[row5+ 1][colm5] == (Fore.BLACK + "X") and ArrayUser[row4][colm4] == (Fore.BLACK + "X") and ArrayUser[row4][colm4 +1] == (Fore.BLACK + "X"):
                         print(Fore.WHITE + "Congraulations, you have beaten the very challenging game of Battle Ship")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                         if try_again == "y":
@@ -249,16 +271,23 @@ def battleship() :
                     computer_row = random.randrange(0,board_size-1)
                     computer_colm = random.randrange(0,board_size-1)
                 if computer_list == user_sub_location or computer_list == user_sub_location2 or computer_list == user_destoryer_location or computer_list == user_destoryer_location2:
-                    print(Fore.WHITE + "Dang the computer hit one of your ships")
-                    ArrayComputer[computer_row][computer_colm] = (Fore.GREEN + "X")
-                    if computer_guesslist == user_sub_location and computer_guesslist == user_sub_location2:
-                        print(Fore.WHITE + "The computer has sunk your Submarine")
-                        ArrayComputer[computer_row][computer_colm] = (Fore.BLACK + "X")
-                    if computer_guesslist == user_destoryer_location and computer_guesslist == user_destoryer_location2:
-                        print(Fore.WHITE + "The computer has sunk your Destoryer")
-                        ArrayComputer[computer_row][computer_colm] = (Fore.BLACK + "X")
-                    elif computer_guesslist == user_destoryer_location and computer_guesslist == user_destoryer_location2 and computer_guesslist == user_sub_location and computer_guesslist == user_sub_location2:
-                        print(Fore.WHITE + "Congraulations, you have beaten the very challenging game of Battle Ship")
+                    print(Fore.WHITE + "**********")
+                    if computer_list == user_sub_location or computer_list == user_sub_location2:
+                        print(Fore.WHITE + "Your submarine has been hit!")
+                        ArrayComputer[computer_row][computer_colm] = (Fore.GREEN + "X")
+                    if computer_list == user_destoryer_location or computer_list == user_destoryer_location2:
+                        print(Fore.WHITE + "Your Destroyer has been hit!")
+                        ArrayComputer[computer_row][computer_colm] = (Fore.GREEN + "X")
+                    if ArrayComputer[row2][colm2] == (Fore.GREEN + "X") and ArrayComputer[row3][colm3 + 1] == (Fore.GREEN + "X"):
+                        print("Your submarine has been hit!")
+                        ArrayUser[row2][colm2] = (Fore.BLACK + "X")
+                        ArrayUser[row2][colm2 + 1] = (Fore.BLACK + "X")
+                    if ArrayUser[row3][colm3] == (Fore.GREEN + "X") and ArrayUser[row3+ 1][colm3] == (Fore.GREEN + "X"):
+                        print("Your Destroyer has been hit!")
+                        ArrayUser[row3][colm3] = (Fore.BLACK + "X")
+                        ArrayUser[row3 + 1][colm3] = (Fore.BLACK + "X")
+                    if ArrayUser[row3][colm3] == (Fore.BLACK + "X") and ArrayUser[row3+ 1][colm3] == (Fore.BLACK + "X") and ArrayUser[row2][colm2] == (Fore.BLACK + "X") and ArrayUser[row2][colm2 +1] == (Fore.BLACK + "X"):
+                        print(Fore.WHITE + "You have been beaten by the computer!")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                         if try_again == "y":
                             battleship()
