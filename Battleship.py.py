@@ -8,26 +8,28 @@ def battleship() :
     round = 1
     computer_round = 1
     import random
-    user_ship_location = None
-    computer_ship_location = None
+    user_sub_location = None
+    user_destoryer_location = None
+    computer_sub_location = None
+    computer_destoryer_location = None
     board_size = None
     try_again = None
     
     while True:
         try:
-            board_size = int(input("What size board would you like? (under 20) "))
+            board_size = int(input("What size board would you like? (at least 10 but under 25) "))
         except ValueError:
-            print("Please type only whole numbers below 20")
+            print("Please type only whole numbers that are at least 10 but below 25")
             continue
 
-        if board_size > 20:
-            print("please type only a whole number below 20")
-            board_size = int(input("What size board would you like? (under 20) "))
+        if board_size > 25:
+            print("Please type only a whole number that is at least 10 but below 25")
+            board_size = int(input("What size board would you like? (at least 10 but under 25) "))
             
             
-        if board_size < 1:
-            print("Please type a whole number greater than 0")
-            board_size = int(input("What size board would you like? (under 20) "))
+        if board_size < 10:
+            print("Please type a whole number that is at least 10 but below 25")
+            board_size = int(input("What size board would you like? (at least 10 but under 25) "))
             
                 
         break
@@ -37,39 +39,60 @@ def battleship() :
         if decision == "y":
             print("Now we shall begin with this glorious exercise testing ones strengh and wit")
         elif decision == "n":
-            print("OK, goodbye you bum piece of poopoo crap now GTFO")
+            print("OK, goodbye")
             exit()
         else: 
-            print("Hell to daw naw, to daw naw naw naw- no please enter either y or n")
+            print("Please either type y or n")
             decision = input("Are you ready to play Battle ship? :(y/n) ")
         
-        decision2 = input("Do you want your ships location to be random? :(y/n) ")
+        decision2 = input("Do you want your Submarine's location to be random? :(y/n) ")
         if decision2 == "y":
-            row2 = random.randrange(0,board_size)
-            colm2 = random.randrange(0,board_size)
-            user_ship_location = (row2, colm2)
+            row2 = random.randrange(1,board_size)
+            colm2 = random.randrange(1,board_size)
+            user_sub_location = (row2, colm2)
         elif decision2 == "n":
-            row2 = int(input("What row would you like the ship to be placed?: "))
-            colm2 = int(input("What column would you like the ship to be placed?: "))
-            user_ship_location = (row2, colm2)
+            row2 = int(input("What row would you like the Submarine to be placed?: "))
+            colm2 = int(input("What column would you like the Submarine to be placed?: "))
+            user_sub_location = (row2, colm2)
         else:
-            print("bro wth are you doing just pick a damn row and column :")
-            decision2 = input("Do you want the ships location to be random? :(y/n) ")
+            print("Please just pick a row and column :")
+            decision2 = input("Do you want the Submarine's location to be random? :(y/n) ")
+         
+        decision3 = input("Do you want your Destoryer's location to be random? :(y/n) ")
+        if decision2 == "y":
+            row3 = random.randrange(1,board_size)
+            colm3 = random.randrange(1,board_size)
+            user_destoryer_location = (row3, colm3)
+        elif decision3 == "n":
+            row3 = int(input("What row would you like the Destoryer to be placed?: "))
+            colm3 = int(input("What column would you like the Destoryer to be placed?: "))
+            user_destoryer_location = (row3, colm3)
+        else:
+            print("Please just pick a row and column :")
+            decision3 = input("Do you want the Destoryer's location to be random? :(y/n) ")
         
-        return row2, colm2, user_ship_location
+        return row2, colm2, user_sub_location, row3, colm3, user_destoryer_location
         
-    row2, colm2, user_ship_location = ask()
+    row2, colm2, user_sub_location, row3, colm3, user_destoryer_location = ask()
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
-    print("You have choosen," ,user_ship_location, "as your ship location")
+    print("You have choosen," ,user_sub_location, "as your Submarine's location and" ,user_destoryer_location, "as your Destoryer's location")
     def computer_ask():
-        row4 = random.randrange(0,board_size)
-        colm4 = random.randrange(0,board_size)
-        computer_ship_location = (row4, colm4)
-        return computer_ship_location
+        row4 = random.randrange(1,board_size)
+        colm4 = random.randrange(1,board_size)
+        computer_sub_location = (row4, colm4)
+        return computer_sub_location
     
-    computer_ship_location = computer_ask()
+    computer_sub_location = computer_ask()
+    
+    def computer_ask2():
+        row4 = random.randrange(1,board_size)
+        colm4 = random.randrange(1,board_size)
+        computer_destoryer_location = (row4, colm4)
+        return computer_destoryer_location
+    
+    computer_destoryer_location = computer_ask2()
 
     ArrayUser = []
     
@@ -90,12 +113,13 @@ def battleship() :
             print(" ".join(row))
             
     ArrayComputer[row2][colm2] = (Fore.WHITE + "S")
+    ArrayComputer[row3][colm3] = (Fore.WHITE + "D")
 
-    row = 0
-    colm = 0
+    row = 1
+    colm = 1
     user_guesslist = []
-    computer_row = 0
-    computer_colm = 0
+    computer_row = 1
+    computer_colm = 1
     computer_guesslist = []
         
     while True:
@@ -150,19 +174,19 @@ def battleship() :
                 else:
                     print(Fore.WHITE + "You already chose that coordinate!")
         
-                if list == computer_ship_location:
+                if list == computer_sub_location or computer_destoryer_location:
                     print(Fore.WHITE + "Dang you hit the computers Battle Ship")
                     ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     printboard(ArrayComputer)
-                    print(Fore.WHITE + "Congraulations, you have beaten my very hard game of Battle Ship")
+                    print(Fore.WHITE + "Congraulations, you have beaten the very challenging game of Battle Ship")
                     try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                     if try_again == "y":
                         battleship()
                     elif try_again == "n":
-                        print(Fore.WHITE + "Ok loser, now GTFO of my code")
+                        print(Fore.WHITE + "Ok thank you, goodbye")
                         exit()
                     else:
-                        print(Fore.WHITE + "Please type y or n you dumdum poopoo head")
+                        print(Fore.WHITE + "Please type only y or n")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
 
                 else:
@@ -171,8 +195,8 @@ def battleship() :
                     
                 round +=1
                 
-                if round > 6 and list == computer_ship_location:
-                    print(Fore.WHITE + "Dang you lucky son of a gun you got it. Congrats you win")
+                if round > 6 and list == computer_sub_location or round > 6 and list == computer_destoryer_location:
+                    print(Fore.WHITE + "Wow your pretty lucky, Congratulations you win!")
                     continue
                     
             while round < 6 and computer_round <= round :
@@ -185,10 +209,10 @@ def battleship() :
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "Computer Round", computer_round)
-                print(Fore.WHITE + "This is your board, the computer will now try to guess where your ship is, which you can now see by the S in the grid.")
+                print(Fore.WHITE + "This is your board, the computer will now try to guess where your Submarine, shown by the S, and Destoryer, shown by the D.")
                 printboard(ArrayComputer)
-                computer_row = random.randrange(0,board_size)
-                computer_colm = random.randrange(0,board_size)
+                computer_row = random.randrange(1,board_size)
+                computer_colm = random.randrange(1,board_size)
         
                 computer_list= (computer_row, computer_colm)
                 computer_guesslist.append(computer_list)
@@ -198,30 +222,30 @@ def battleship() :
                 if ArrayComputer[computer_row][computer_colm] == "O":
                     print(Fore.WHITE + "**********")
                 else:
-                    computer_row = random.randrange(0,board_size)
-                    computer_colm = random.randrange(0,board_size)
+                    computer_row = random.randrange(1,board_size)
+                    computer_colm = random.randrange(1,board_size)
         
-                if computer_list == user_ship_location:
+                if computer_list == user_sub_location or computer_list == user_destoryer_location:
                     print(Fore.WHITE + "The computer has hit your battleship!")
                     ArrayComputer[row][colm] = (Fore.GREEN + "X")
                     printboard(ArrayComputer)
-                    print(Fore.WHITE + "You suck, your bum self lost to the stupid coomputer")
+                    print(Fore.WHITE + "You lost to the computer")
                     try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                     if try_again == "y":
                         battleship()
                     elif try_again == "n":
-                        print(Fore.WHITE + "Ok loser, now GTFO of my code")
+                        print(Fore.WHITE + "Ok thank you goodbye")
                         exit()
                     else:
-                        print(Fore.WHITE + "Please type y or n you dumdum poopoo head")
+                        print(Fore.WHITE + "Please type y or n")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
 
                 else:
-                    print(Fore.WHITE + "The computer missed, youve survived another round")
+                    print(Fore.WHITE + "The computer missed, so you survived another round")
                     ArrayComputer[computer_row][computer_colm] = (Fore.RED + "M")
                     
-                if round > 6 and computer_list == user_ship_location:
-                    print(Fore.WHITE + "Dang you suck so much you lost on the last round. MUAH HA HA HA HA HA HA")
+                if round > 6 and computer_list == user_sub_location or round > 6 and computer_list == user_destoryer_location:
+                    print(Fore.WHITE + "Wow you lost to the computer the last round. Good Game")
                     continue
                 break
 
