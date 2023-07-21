@@ -31,7 +31,7 @@ def battleship() :
             board_size = int(input("What size board would you like? (at least 10 but under 25) "))
             
             
-        if board_size < 10:
+        if board_size < 9:
             print("Please type a whole number that is at least 10 but below 25")
             board_size = int(input("What size board would you like? (at least 10 but under 25) "))
             
@@ -218,6 +218,7 @@ def battleship() :
                         print("You have sunk the computers destroyer!")
                         ArrayUser[row5][colm5] = (Fore.BLACK + "X")
                         ArrayUser[row5 + 1][colm5] = (Fore.BLACK + "X")
+                    
                     if ArrayUser[row5][colm5] == (Fore.BLACK + "X") and ArrayUser[row5+ 1][colm5] == (Fore.BLACK + "X") and ArrayUser[row4][colm4] == (Fore.BLACK + "X") and ArrayUser[row4][colm4 +1] == (Fore.BLACK + "X"):
                         print(Fore.WHITE + "Congraulations, you have beaten the very challenging game of Battle Ship")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
@@ -228,18 +229,17 @@ def battleship() :
                             exit()
                         else:
                             print(Fore.WHITE + "Please type only y or n")
-                            try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
-                            
+                            try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ") 
+                    
                 else:
-                    print(Fore.WHITE + "You missed! Try again!")
+                    print(Fore.WHITE + "You missed!")
                     ArrayUser[row][colm] = (Fore.RED + "M")
+                    
+                if round > 6 or ArrayUser[row5][colm5] != (Fore.BLACK + "X") or ArrayUser[row5+ 1][colm5] != (Fore.BLACK + "X") or ArrayUser[row4][colm4] != (Fore.BLACK + "X") or ArrayUser[row4][colm4 +1] != (Fore.BLACK + "X"):
+                        print("You lost the game of battleship!")
                     
                 round +=1
                 
-                if round > 6 and list == computer_sub_location or round > 6 and list == computer_sub_location2 or round > 6 and list == computer_destoryer_location or round > 6 and list == computer_destoryer_location2:
-                    print(Fore.WHITE + "Wow your pretty lucky, Congratulations you win!")
-                    continue
-                    
             while round < 6 and computer_round <= round :
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
