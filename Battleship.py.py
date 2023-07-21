@@ -119,11 +119,6 @@ def battleship() :
             print("The computers ship locations were invalid, please re-start the function")
         
     ship_check2()
-    
-    print(computer_sub_location)
-    print(computer_sub_location2)
-    print(computer_destoryer_location)
-    print(computer_destoryer_location2)
 
     ArrayUser = []
     
