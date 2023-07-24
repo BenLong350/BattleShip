@@ -64,20 +64,20 @@ def battleship() :
             print("Please just pick a row and column :")
             decision2 = input("Do you want the Submarine's location to be random? :(y/n) ")
          
-        decision3 = input("Do you want your Destoryer's location to be random? :(y/n) ")
+        decision3 = input("Do you want your Destroyer's location to be random? :(y/n) ")
         if decision2 == "y":
             row3 = random.randrange(0,board_size)
             colm3 = random.randrange(1,board_size - 1)
             user_destoryer_location = (row3, colm3)
             user_destoryer_location2 = (row3 + 1, colm3)
         elif decision3 == "n":
-            row3 = int(input("What row would you like the Destoryer to be placed?: "))
-            colm3 = int(input("What column would you like the Destoryer to be placed?: "))
+            row3 = int(input("What row would you like the Destroyer to be placed?: "))
+            colm3 = int(input("What column would you like the Destroyer to be placed?: "))
             user_destoryer_location = (row3, colm3)
             user_destoryer_location2 = (row3 + 1, colm3)
         else:
             print("Please just pick a row and column :")
-            decision3 = input("Do you want the Destoryer's location to be random? :(y/n) ")
+            decision3 = input("Do you want the Destroyer's location to be random? :(y/n) ")
         
         return row2, colm2, user_sub_location, user_sub_location2, row3, colm3, user_destoryer_location, user_destoryer_location2
         
@@ -93,7 +93,7 @@ def battleship() :
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
-    print("You have choosen," ,user_sub_location, user_sub_location2, "as your Submarine's location and" ,user_destoryer_location, user_destoryer_location2, "as your Destoryer's location")
+    print("You have choosen," ,user_sub_location, user_sub_location2, "as your Submarine's location and" ,user_destoryer_location, user_destoryer_location2, "as your Destroyer's location")
     
     def computer_ask():
         row4 = random.randrange(1,board_size - 1)
@@ -152,11 +152,7 @@ def battleship() :
         
     while True:
         while True:
-            while round < 6 and computer_round >= round :
-                print(Fore.WHITE + "**************")
-                print(Fore.WHITE + "**************")
-                print(Fore.WHITE + "**************")
-                print(Fore.WHITE + "**************")
+            while round < 9 and computer_round >= round :
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
@@ -176,7 +172,7 @@ def battleship() :
                         print(Fore.WHITE + "**************")
                     else:
                         if row != (range(0,board_size)):
-                            print(Fore.WHITE + "Good try sucker now enter whooe numbers that coorelate to the board size")
+                            print(Fore.WHITE + "Good try sucker now enter whole numbers that coorelate to the board size")
                             row = int(input(Fore.WHITE + "Please guess a row : "))
                     break
     
@@ -208,10 +204,10 @@ def battleship() :
                         print(Fore.WHITE + "You have hit the computers Submarine")
                         ArrayUser[row][colm] = (Fore.GREEN + "X")
                     if list == computer_destoryer_location or list == computer_destoryer_location2:
-                        print(Fore.WHITE + "You have hit the computers Destoryer")
+                        print(Fore.WHITE + "You have hit the computers Destroyer")
                         ArrayUser[row][colm] = (Fore.GREEN + "X")
                     if ArrayUser[row4][colm4] == (Fore.GREEN + "X") and ArrayUser[row4][colm4 + 1] == (Fore.GREEN + "X"):
-                        print("You have sunk the compputers submarine!")
+                        print("You have sunk the computers submarine!")
                         ArrayUser[row4][colm4] = (Fore.BLACK + "X")
                         ArrayUser[row4][colm4 + 1] = (Fore.BLACK + "X")
                     if ArrayUser[row5][colm5] == (Fore.GREEN + "X") and ArrayUser[row5+ 1][colm5] == (Fore.GREEN + "X"):
@@ -235,22 +231,18 @@ def battleship() :
                     print(Fore.WHITE + "You missed!")
                     ArrayUser[row][colm] = (Fore.RED + "M")
                     
-                if round > 6 or ArrayUser[row5][colm5] != (Fore.BLACK + "X") or ArrayUser[row5+ 1][colm5] != (Fore.BLACK + "X") or ArrayUser[row4][colm4] != (Fore.BLACK + "X") or ArrayUser[row4][colm4 +1] != (Fore.BLACK + "X"):
-                        print("You lost the game of battleship!")
+                if round == 8:
+                    print("You lost the game of battleship!")
                     
                 round +=1
                 
-            while round < 6 and computer_round <= round :
-                print(Fore.WHITE + "**************")
-                print(Fore.WHITE + "**************")
-                print(Fore.WHITE + "**************")
-                print(Fore.WHITE + "**************")
+            while round < 9 and computer_round <= round :
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "**************")
                 print(Fore.WHITE + "Computer Round", computer_round)
-                print(Fore.WHITE + "This is your board, the computer will now try to guess where your Submarine, shown by the S, and Destoryer, shown by the D.")
+                print(Fore.WHITE + "This is your board, the computer will now try to guess where your Submarine, shown by the S, and Destroyer, shown by the D.")
                 printboard(ArrayComputer)
                 computer_row = random.randrange(0,board_size-1)
                 computer_colm = random.randrange(0,board_size-1)
@@ -296,9 +288,10 @@ def battleship() :
                     print(Fore.WHITE + "The computer missed, so you survived another round")
                     ArrayComputer[computer_row][computer_colm] = (Fore.RED + "M")
                     
-                if round > 6 and computer_list == user_sub_location or round > 6 and computer_list == user_sub_location2 or round > 6 and computer_list == user_destoryer_location or round > 6 and computer_list == user_destoryer_location2:
+                if round > 9 and computer_list == user_sub_location or round > 9 and computer_list == user_sub_location2 or round > 9 and computer_list == user_destoryer_location or round > 6 and computer_list == user_destoryer_location2:
                     print(Fore.WHITE + "Wow you lost to the computer the last round. Good Game")
                     continue
+                    
                 break
 
 
