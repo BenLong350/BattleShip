@@ -2,6 +2,7 @@
 
 def battleship() :
     
+    import string
     import colorama
     from colorama import Fore
     #all these varibles must be defined 
@@ -16,28 +17,9 @@ def battleship() :
     computer_sub_location2 = None
     computer_destoryer_location = None
     computer_destoryer_location2 = None
-    board_size = None
+    board_size = 10
     try_again = None
-    
-    while True:
-        try:
-            board_size = int(input("What size board would you like? (at least 10 but under 25) "))
-        except ValueError:
-            print("Please type only whole numbers that are at least 10 but below 25")
-            continue
 
-        if board_size > 25:
-            print("Please type only a whole number that is at least 10 but below 25")
-            board_size = int(input("What size board would you like? (at least 10 but under 25) "))
-            
-            
-        if board_size < 9:
-            print("Please type a whole number that is at least 10 but below 25")
-            board_size = int(input("What size board would you like? (at least 10 but under 25) "))
-            
-                
-        break
-        
     def ask():
         decision = input("Are you ready to play Battle ship? :(y/n) ")
         if decision == "y":
@@ -52,7 +34,7 @@ def battleship() :
         decision2 = input("Do you want your Submarine's location to be random? :(y/n) ")
         if decision2 == "y":
             row2 = random.randrange(1,board_size -1)
-            colm2 = random.randrange(0,board_size)
+            colm2 = random.randrange(0,board_size -1)
             user_sub_location = (row2, colm2)
             user_sub_location2 = (row2, colm2 + 1)
         elif decision2 == "n":
@@ -66,7 +48,7 @@ def battleship() :
          
         decision3 = input("Do you want your Destroyer's location to be random? :(y/n) ")
         if decision2 == "y":
-            row3 = random.randrange(0,board_size)
+            row3 = random.randrange(0,board_size -1)
             colm3 = random.randrange(1,board_size - 1)
             user_destoryer_location = (row3, colm3)
             user_destoryer_location2 = (row3 + 1, colm3)
@@ -89,6 +71,27 @@ def battleship() :
             exit()
             
     ship_check1()
+    
+    def ship_check2():
+        if user_sub_location2 == user_destoryer_location2:
+            print("Your ship placement is invalid, please run the program again")
+            exit()
+            
+    ship_check2()
+    
+    def ship_check3():
+        if user_sub_location == user_destoryer_location2:
+            print("Your ship placement is invalid, please run the program again")
+            exit()
+            
+    ship_check3()
+    
+    def ship_check4():
+        if user_sub_location2 == user_destoryer_location:
+            print("Your ship placement is invalid, please run the program again")
+            exit()
+            
+    ship_check4()
     
     print(Fore.WHITE + "**************")
     print(Fore.WHITE + "**************")
@@ -114,11 +117,29 @@ def battleship() :
     
     computer_destoryer_location, computer_destoryer_location2, row5, colm5 = computer_ask2()
     
-    def ship_check2():
+    def ship_check5():
         if computer_sub_location == computer_destoryer_location:
-            print("The computers ship locations were invalid, please re-start the function")
+            print("The computers ship location is invalid, please re-start the function")
         
-    ship_check2()
+    ship_check5()
+    
+    def ship_check6():
+        if computer_sub_location2 == computer_destoryer_location2:
+            print("The computers ship location is invalid, please re-start the function")
+            
+    ship_check6()
+    
+    def ship_check7():
+        if computer_sub_location == computer_destoryer_location2:
+            print("The computers ship location is invalid, please re-start the function")
+            
+    ship_check7()
+    
+    def ship_check8():
+        if computer_sub_location2 == computer_destoryer_location:
+            print("The computers ship location is invalid, please re-start the function")
+            
+    ship_check8()
 
     ArrayUser = []
     
@@ -129,14 +150,26 @@ def battleship() :
     
     for x in range(0,board_size):
         ArrayComputer.append([Fore.BLUE + "O"] * board_size)
-
+    row_letters = [ Fore.WHITE + "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N"]
     def printboard(ArrayUser):
+        letter_index = 0
+        for i in range(0, board_size + 1):
+            print(i, end = " ")
+        print("")
+        
         for row in ArrayUser:
-            print(" ".join(row))
+            print(Fore.WHITE + row_letters[letter_index], " ".join(row))
+            letter_index += 1
             
     def printboard(ArrayComputer):
+        letter_index = 0
+        for i in range(0, board_size + 1):
+            print(i, end = " ")
+        print("")
+        
         for row in ArrayComputer:
-            print(" ".join(row))
+            print(Fore.WHITE + row_letters[letter_index], " ".join(row))
+            letter_index += 1
             
     ArrayComputer[row2][colm2] = (Fore.WHITE + "S")
     ArrayComputer[row2][colm2 +1] = (Fore.WHITE + "S")
@@ -164,7 +197,7 @@ def battleship() :
                 
                 while True:
                     try:
-                        row = int(input(Fore.WHITE + "Please guess a row : "))
+                        row = int(input(Fore.WHITE + "Please guess a row : ")) -1
                     except ValueError:
                         print(Fore.WHITE + "Please type only whole numbers that coorelate to the board size")
                         continue
@@ -173,12 +206,12 @@ def battleship() :
                     else:
                         if row != (range(0,board_size)):
                             print(Fore.WHITE + "Good try sucker now enter whole numbers that coorelate to the board size")
-                            row = int(input(Fore.WHITE + "Please guess a row : "))
+                            row = int(input(Fore.WHITE + "Please guess a row : ")) -1
                     break
     
                 while True:
                     try:
-                        colm = int(input(Fore.WHITE + "Please guess a column : "))
+                        colm = int(input(Fore.WHITE + "Please guess a column : ")) -1
                     except ValueError:
                         print(Fore.WHITE + "Please type only whole numbers that coorelate to the board size")
                         continue
@@ -187,13 +220,13 @@ def battleship() :
                     else:
                         if colm != (range(0,board_size)):
                             print(Fore.WHITE + "Good try sucker now enter only whole numbers that coorelate to the board size")
-                            colm = int(input(Fore.WHITE + "Please guess a column : "))
+                            colm = int(input(Fore.WHITE + "Please guess a column : ")) -1
                     break
-                list= (row, colm)
+                list= (row +1, colm +1)
                 user_guesslist.append(list)
                 print(Fore.WHITE + "These are the guesses that have been made so far:", user_guesslist)
         
-                if ArrayUser[row][colm] == "O":
+                if ArrayUser[row][colm] == (Fore.BLUE + "O"):
                     print(Fore.WHITE + "**********")
                 else:
                     print()
@@ -244,19 +277,19 @@ def battleship() :
                 print(Fore.WHITE + "Computer Round", computer_round)
                 print(Fore.WHITE + "This is your board, the computer will now try to guess where your Submarine, shown by the S, and Destroyer, shown by the D.")
                 printboard(ArrayComputer)
-                computer_row = random.randrange(0,board_size-1)
-                computer_colm = random.randrange(0,board_size-1)
+                computer_row = random.randrange(0,9)
+                computer_colm = random.randrange(0,9)
         
-                computer_list= (computer_row, computer_colm)
+                computer_list= (computer_row +1, computer_colm +1)
                 computer_guesslist.append(computer_list)
                 print(Fore.WHITE + "These are the guesses the computer made:", computer_guesslist)
                 computer_round += 1
         
-                if ArrayComputer[computer_row][computer_colm] == "O":
+                if ArrayComputer[computer_row][computer_colm] == (Fore.BLUE + "O"):
                     print(Fore.WHITE + "**********")
                 else:
-                    computer_row = random.randrange(0,board_size-1)
-                    computer_colm = random.randrange(0,board_size-1)
+                    computer_row = random.randrange(0,9)
+                    computer_colm = random.randrange(0,9)
                 if computer_list == user_sub_location or computer_list == user_sub_location2 or computer_list == user_destoryer_location or computer_list == user_destoryer_location2:
                     print(Fore.WHITE + "**********")
                     if computer_list == user_sub_location or computer_list == user_sub_location2:
@@ -286,7 +319,7 @@ def battleship() :
                             try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                 else:
                     print(Fore.WHITE + "The computer missed, so you survived another round")
-                    ArrayComputer[computer_row][computer_colm] = (Fore.RED + "M")
+                    ArrayComputer[computer_row] [computer_colm] = (Fore.RED + "M")
                     
                 if round > 9 and computer_list == user_sub_location or round > 9 and computer_list == user_sub_location2 or round > 9 and computer_list == user_destoryer_location or round > 6 and computer_list == user_destoryer_location2:
                     print(Fore.WHITE + "Wow you lost to the computer the last round. Good Game")
