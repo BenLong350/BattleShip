@@ -1104,12 +1104,12 @@ def battleship() :
                         ArrayComputer[row4][colm4] = (Fore.BLACK + "X")
                         ArrayComputer[row4][colm4 + 1] = (Fore.BLACK + "X")
                         ArrayComputer[row4][colm4 + 2] = (Fore.BLACK + "X")
-                    if ArrayComputer[row5][colm5] == (Fore.GREEN + "X") and ArrayComputer[row5+ 1][colm5] == (Fore.GREEN + "X") and ArrayComputer[row5 + 2][colm5] == (Fore.GREEN + "X"):
+                    if ArrayComputer[row5][colm5] == (Fore.GREEN + "X") and ArrayComputer[row5 + 1][colm5] == (Fore.GREEN + "X") and ArrayComputer[row5 + 2][colm5] == (Fore.GREEN + "X"):
                         print("You have sunk the computers destroyer!")
                         ArrayComputer[row5][colm5] = (Fore.BLACK + "X")
                         ArrayComputer[row5 + 1][colm5] = (Fore.BLACK + "X")
                         ArrayComputer[row5 + 2][colm5] = (Fore.BLACK + "X")
-                    if ArrayComputer[row9][colm9] == (Fore.GREEN + "X") and ArrayComputer[row9+ 1][colm9] == (Fore.GREEN + "X"):
+                    if ArrayComputer[row9][colm9] == (Fore.GREEN + "X") and ArrayComputer[row9 + 1][colm9] == (Fore.GREEN + "X"):
                         print("You have sunk the computers Patrol Boat!")
                         ArrayComputer[row9][colm9] = (Fore.BLACK + "X")
                         ArrayComputer[row9 + 1][colm9] = (Fore.BLACK + "X")
@@ -1127,7 +1127,7 @@ def battleship() :
                         ArrayComputer[row11 + 3][colm11] = (Fore.BLACK + "X")
                         ArrayComputer[row11 + 4][colm11] = (Fore.BLACK + "X")
                     
-                    if ArrayComputer[row5][colm5] == (Fore.BLACK + "X") and ArrayComputer[row5+ 1][colm5] == (Fore.BLACK + "X") and ArrayComputer[row5+ 2][colm5] == (Fore.BLACK + "X") and ArrayComputer[row4][colm4] == (Fore.BLACK + "X") and ArrayComputer[row4][colm4 +1] == (Fore.BLACK + "X") and ArrayComputer[row4][colm4 + 2] == (Fore.GREEN + "X") and ArrayComputer[row9][colm9] == (Fore.BLACK + "X") and ArrayComputer[row9 + 1][colm9] == (Fore.BLACK + "X") and ArrayComputer[row10][colm10] == (Fore.BLACK + "X") and ArrayComputer[row10 + 1][colm10] == (Fore.BLACK + "X") and ArrayComputer[row10 + 2][colm10] == (Fore.BLACK + "X") and ArrayComputer[row10 + 3][colm10] == (Fore.BLACK + "X") and ArrayComputer[row11][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 1][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 2][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 3][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 4][colm11] == (Fore.BLACK + "X"):
+                    if ArrayComputer[row5][colm5] == (Fore.BLACK + "X") and ArrayComputer[row5 + 1][colm5] == (Fore.BLACK + "X") and ArrayComputer[row5 + 2][colm5] == (Fore.BLACK + "X") and ArrayComputer[row4][colm4] == (Fore.BLACK + "X") and ArrayComputer[row4][colm4 + 1] == (Fore.BLACK + "X") and ArrayComputer[row4][colm4 + 2] == (Fore.GREEN + "X") and ArrayComputer[row9][colm9] == (Fore.BLACK + "X") and ArrayComputer[row9 + 1][colm9] == (Fore.BLACK + "X") and ArrayComputer[row10][colm10] == (Fore.BLACK + "X") and ArrayComputer[row10 + 1][colm10] == (Fore.BLACK + "X") and ArrayComputer[row10 + 2][colm10] == (Fore.BLACK + "X") and ArrayComputer[row10 + 3][colm10] == (Fore.BLACK + "X") and ArrayComputer[row11][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 1][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 2][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 3][colm11] == (Fore.BLACK + "X") and ArrayComputer[row11 + 4][colm11] == (Fore.BLACK + "X"):
                         print(Fore.WHITE + "Congraulations, you have beaten the very challenging game of Battle Ship")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                         if try_again == "y":
@@ -1159,8 +1159,9 @@ def battleship() :
                 computer_row = random.randrange(0,9)
                 computer_colm = random.randrange(0,9)
         
-                computer_list= (chr(computer_row +65), computer_colm +1)
-                computer_guesslist.append(computer_list)
+                computer_list= (computer_row, computer_colm)
+                computer_guesses = (chr(computer_row + 65), computer_colm + 1)
+                computer_guesslist.append(computer_guesses)
                 print(Fore.WHITE + "These are the guesses the computer made:", computer_guesslist)
                 computer_round += 1
         
@@ -1186,33 +1187,61 @@ def battleship() :
                     if computer_list == user_carrier_location or computer_list == user_carrier_location2 or computer_list == user_carrier_location3 or computer_list == user_carrier_location4 or computer_list == user_carrier_location5:
                         print(Fore.WHITE + "Your Carrier has been hit!")
                         ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
-                    if ArrayUser[ord(row2)][colm2] == (Fore.GREEN + "X") and ArrayUser[ord(row2)][colm2 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row2)][colm2 + 2] == (Fore.GREEN + "X"):
+                    
+                    if ArrayUser[ord(row2) - 65][colm2] == (Fore.GREEN + "X") and ArrayUser[ord(row2) - 65][colm2 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row2) - 65][colm2 + 2] == (Fore.GREEN + "X") or ArrayUser[ord(row2) - 65][colm2] == (Fore.GREEN + "X") and ArrayUser[ord(row2) - 64][colm2] == (Fore.GREEN + "X") and ArrayUser[ord(row2) - 63][colm2] == (Fore.GREEN + "X"):
                         print("Your submarine has been sunk!")
-                        ArrayUser[ord(row2)][colm2] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row2)][colm2 + 1] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row2)][colm2 + 2] = (Fore.BLACK + "X")
-                    if ArrayUser[ord(row3)][colm3] == (Fore.GREEN + "X") and ArrayUser[ord(row3)][colm3 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row3)][colm3 + 2] == (Fore.GREEN + "X"):
+                        if decision2_2 == "h":
+                            ArrayUser[ord(row2) - 65][colm2] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row2) - 65][colm2 + 1] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row2) - 65][colm2 + 2] = (Fore.BLACK + "X")
+                        elif decision2_2 == "v":
+                            ArrayUser[ord(row2) - 65][colm2] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row2) - 64][colm2] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row2) - 63][colm2] = (Fore.BLACK + "X")
+                    if ArrayUser[ord(row3) -  65][colm3] == (Fore.GREEN + "X") and ArrayUser[ord(row3) - 65][colm3 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row3) - 65][colm3 + 2] == (Fore.GREEN + "X") or ArrayUser[ord(row3) -  65][colm3] == (Fore.GREEN + "X") and ArrayUser[ord(row3) - 64][colm3] == (Fore.GREEN + "X") and ArrayUser[ord(row3) - 63][colm3] == (Fore.GREEN + "X"):
                         print("Your Destroyer has been sunk!")
-                        ArrayUser[ord(row3)][colm3] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row3)][colm3 + 1] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row3)][colm3 + 2] = (Fore.BLACK + "X")
-                    if ArrayUser[ord(row6)][colm6] == (Fore.GREEN + "X") and ArrayUser[ord(row6) - 64][colm6] == (Fore.GREEN + "X"):
+                        if decision3_3 == "h":
+                            ArrayUser[ord(row3) - 65][colm3] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row3) - 65][colm3 + 1] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row3) - 65][colm3 + 2] = (Fore.BLACK + "X")
+                        elif decision3_3 == "v":
+                            ArrayUser[ord(row3) - 65][colm3] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row3) - 64][colm3] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row3) - 63][colm3] = (Fore.BLACK + "X")
+                    if ArrayUser[ord(row6) - 65][colm6] == (Fore.GREEN + "X") and ArrayUser[ord(row6) - 65][colm6 + 1] == (Fore.GREEN + "X") or ArrayUser[ord(row6) - 65][colm6] == (Fore.GREEN + "X") and ArrayUser[ord(row6) - 64][colm6] == (Fore.GREEN + "X"):
                         print("Your Patrol Boat has been sunk!")
-                        ArrayUser[ord(row6)][colm6] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row6) - 64][colm6] = (Fore.BLACK + "X")
-                    if ArrayUser[ord(row7)][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 64][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 63][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 62][colm7] == (Fore.GREEN + "X"):
+                        if decision4_4 == "v":
+                            ArrayUser[ord(row6) - 65][colm6] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row6) - 64][colm6] = (Fore.BLACK + "X")
+                        elif decision4_4 == "h":
+                            ArrayUser[ord(row6) - 65][colm6]
+                            ArrayUser[ord(row6) - 65][colm6 + 1] = (Fore.BLACK + "X")
+                    if ArrayUser[ord(row7) - 65][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 64][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 63][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 62][colm7] == (Fore.GREEN + "X") or ArrayUser[ord(row7) - 65][colm7] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 65][colm7 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 65][colm7 + 2] == (Fore.GREEN + "X") and ArrayUser[ord(row7) - 65][colm7 + 3] == (Fore.GREEN + "X"):
                         print("Your Battleship has been sunk!")
-                        ArrayUser[row7][colm7] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row7) - 64][colm7] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row7) - 63][colm7] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row7) - 62][colm7] = (Fore.BLACK + "X")
-                    if ArrayUser[ord(row8)][colm8] == (Fore.GREEN + "X") and ArrayUser[ord(row8)][colm8 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row8)][colm8 + 2] == (Fore.GREEN + "X") and ArrayUser[ord(row8)][colm8 + 3] == (Fore.GREEN + "X") and ArrayUser[ord(row8)][colm8 + 4] == (Fore.GREEN + "X"):
+                        if decision5_5 == "v":
+                            ArrayUser[ord(row7) - 65][colm7] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row7) - 64][colm7] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row7) - 63][colm7] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row7) - 62][colm7] = (Fore.BLACK + "X")
+                        elif decision5_5 == "h":
+                            ArrayUser[ord(row7) - 65][colm7] = (Fore.BLACK + "X")    
+                            ArrayUser[ord(row7) - 65][colm7 + 1] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row7) - 65][colm7 + 2] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row7) - 65][colm7 + 3] = (Fore.BLACK + "X")
+                    if ArrayUser[ord(row8) - 65][colm8] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 65][colm8 + 1] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 65][colm8 + 2] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 65][colm8 + 3] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 65][colm8 + 4] == (Fore.GREEN + "X") or ArrayUser[ord(row8) - 65][colm8] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 64][colm8] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 63][colm8] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 62][colm8] == (Fore.GREEN + "X") and ArrayUser[ord(row8) - 61][colm8] == (Fore.GREEN + "X"):
                         print("Your Carrier has been sunk!")
-                        ArrayUser[ord(row8)][colm8] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row8)][colm8 + 1] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row8)][colm8 + 2] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row8)][colm8 + 3] = (Fore.BLACK + "X")
-                        ArrayUser[ord(row8)][colm8 + 4] == (Fore.BLACK + "X")
+                        if decision6_6 == "h":
+                            ArrayUser[ord(row8) - 65][colm8] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 65][colm8 + 1] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 65][colm8 + 2] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 65][colm8 + 3] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 65][colm8 + 4] = (Fore.BLACK + "X")
+                        elif decision6_6 == "v":
+                            ArrayUser[ord(row8) - 65][colm8] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 64][colm8] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 63][colm8] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 62][colm8] = (Fore.BLACK + "X")
+                            ArrayUser[ord(row8) - 61][colm8] = (Fore.BLACK + "X")
                     if ArrayUser[ord(row3)][colm3] == (Fore.BLACK + "X") and ArrayUser[ord(row3)][colm3 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row3)][colm3 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row2)][colm2] == (Fore.BLACK + "X") and ArrayUser[ord(row2)][colm2 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row2)][colm2 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row6)][colm6] == (Fore.BLACK + "X") and ArrayUser[ord(row6) - 64][colm6] == (Fore.BLACK + "X") and ArrayUser[ord(row7)][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 64][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 63][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 62][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 3] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 4] == (Fore.BLACK + "X"):
                         print(Fore.WHITE + "You have been beaten by the computer!")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
