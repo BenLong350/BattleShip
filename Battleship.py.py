@@ -1156,35 +1156,40 @@ def battleship() :
                 print(Fore.WHITE + "Computer Round", computer_round)
                 print(Fore.WHITE + "This is your board, the computer will now try to guess where your Submarine, shown by the S, Destroyer, shown by the D, Patrol Boat, shown by the P, Battleship, shown by the B, and Carrier, shown by the C.")
                 printboard(ArrayUser)
-                computer_row = random.randrange(0,9)
-                computer_colm = random.randrange(0,9)
         
                 computer_list= (computer_row, computer_colm)
                 computer_guesses = (chr(computer_row + 65), computer_colm + 1)
                 computer_guesslist.append(computer_guesses)
                 print(Fore.WHITE + "These are the guesses the computer made:", computer_guesslist)
-                computer_round += 1
-        
+                
                 if ArrayUser[computer_row][computer_colm] == (Fore.BLUE + "O"):
                     print(Fore.WHITE + "**********")
-                else: 
+                    print(Fore.WHITE + "Me pepe est grande")
+                else:
                     computer_row = random.randrange(0,9)
                     computer_colm = random.randrange(0,9)
+                    
+
                 if computer_list == user_sub_location or computer_list == user_sub_location2 or computer_list == user_sub_location3 or computer_list == user_destoryer_location or computer_list == user_destoryer_location2 or computer_list == user_destoryer_location3 or computer_list == user_patrol_location or computer_list == user_patrol_location2 or computer_list == user_battle_location or computer_list == user_battle_location2 or computer_list == user_battle_location3 or computer_list == user_battle_location4 or computer_list == user_carrier_location or computer_list == user_carrier_location2 or computer_list == user_carrier_location3 or computer_list == user_carrier_location4 or computer_list == user_carrier_location5:
                     print(Fore.WHITE + "**********")
                     if computer_list == user_sub_location or computer_list == user_sub_location2 or computer_list == user_sub_location3:
+                        ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                         print(Fore.WHITE + "Your submarine has been hit!")
                         ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     if computer_list == user_destoryer_location or computer_list == user_destoryer_location2 or computer_list == user_destoryer_location3:
+                        ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                         print(Fore.WHITE + "Your Destroyer has been hit!")
                         ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     if computer_list == user_patrol_location or computer_list == user_patrol_location2:
+                        ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                         print(Fore.WHITE + "Your Patrol Boat has been hit!")
                         ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     if computer_list == user_battle_location or computer_list == user_battle_location2 or computer_list == user_battle_location3 or computer_list == user_battle_location4:
+                        ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                         print(Fore.WHITE + "Your Battleship has been hit!")
                         ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     if computer_list == user_carrier_location or computer_list == user_carrier_location2 or computer_list == user_carrier_location3 or computer_list == user_carrier_location4 or computer_list == user_carrier_location5:
+                        ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                         print(Fore.WHITE + "Your Carrier has been hit!")
                         ArrayUser[computer_row][computer_colm] = (Fore.GREEN + "X")
                     
@@ -1242,7 +1247,7 @@ def battleship() :
                             ArrayUser[ord(row8) - 63][colm8] = (Fore.BLACK + "X")
                             ArrayUser[ord(row8) - 62][colm8] = (Fore.BLACK + "X")
                             ArrayUser[ord(row8) - 61][colm8] = (Fore.BLACK + "X")
-                    if ArrayUser[ord(row3)][colm3] == (Fore.BLACK + "X") and ArrayUser[ord(row3)][colm3 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row3)][colm3 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row2)][colm2] == (Fore.BLACK + "X") and ArrayUser[ord(row2)][colm2 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row2)][colm2 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row6)][colm6] == (Fore.BLACK + "X") and ArrayUser[ord(row6) - 64][colm6] == (Fore.BLACK + "X") and ArrayUser[ord(row7)][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 64][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 63][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 62][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 3] == (Fore.BLACK + "X") and ArrayUser[ord(row8)][colm8 + 4] == (Fore.BLACK + "X"):
+                    if ArrayUser[ord(row3) - 65][colm3] == (Fore.BLACK + "X") and ArrayUser[ord(row3) - 65][colm3 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row3) - 65][colm3 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row2) - 65][colm2] == (Fore.BLACK + "X") and ArrayUser[ord(row2) - 65][colm2 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row2) - 65][colm2 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row6) - 65][colm6] == (Fore.BLACK + "X") and ArrayUser[ord(row6) - 64][colm6] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 65][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 64][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 63][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row7) - 62][colm7] == (Fore.BLACK + "X") and ArrayUser[ord(row8) - 65][colm8] == (Fore.BLACK + "X") and ArrayUser[ord(row8) - 65][colm8 + 1] == (Fore.BLACK + "X") and ArrayUser[ord(row8) - 65][colm8 + 2] == (Fore.BLACK + "X") and ArrayUser[ord(row8) - 65][colm8 + 3] == (Fore.BLACK + "X") and ArrayUser[ord(row8) - 65][colm8 + 4] == (Fore.BLACK + "X"):
                         print(Fore.WHITE + "You have been beaten by the computer!")
                         try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                         if try_again == "y":
@@ -1255,7 +1260,11 @@ def battleship() :
                             try_again = input(Fore.WHITE + "Would you like to play again? :(y/n): ")
                 else:
                     print(Fore.WHITE + "The computer missed, so you survived another round")
-                    ArrayUser[computer_row] [computer_colm] = (Fore.RED + "M")
+                    ArrayUser[computer_row][computer_colm] = (Fore.RED + "M")
+                
+                computer_row = random.randrange(0,9)
+                computer_colm = random.randrange(0,9)    
+                computer_round += 1
                     
                 if round > 25 and computer_list == user_sub_location or round > 25 and computer_list == user_sub_location2 or round > 25 and computer_list == user_sub_location3 or round > 25 and computer_list == user_destoryer_location or round > 25 and computer_list == user_destoryer_location2 or round > 25 and computer_list == user_destoryer_location3 or round > 25 and computer_list == user_patrol_location or round > 25 and computer_list == user_patrol_location2 or round > 25 and computer_list == user_battle_location or round > 25 and computer_list == user_battle_location2 or round > 25 and computer_list == user_battle_location3 or round > 25 and computer_list == user_battle_location4 or round > 25 and computer_list == user_carrier_location or round > 25 and computer_list == user_carrier_location2 or round > 25 and computer_list == user_carrier_location3 or round > 25 and computer_list == user_carrier_location4 or round > 25 and computer_list == user_carrier_location5:
                     print(Fore.WHITE + "Wow you lost to the computer the last round. Good Game")
